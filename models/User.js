@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
-const User = mongoose.model('User', new mongoose.Schema({
-    username: { 
-        type: String,
-        unique: true,
-        required: true,
-        trim: true,
+const userSchema = new mongoose.Schema(
+    {
+        username: { 
+            type: String,
+            unique: true,
+            required: true,
+            trim: true,
+            },
         email: {
             type: String,
             unique: true,
@@ -20,12 +22,16 @@ const User = mongoose.model('User', new mongoose.Schema({
             ref: 'User'
         }],
     },
-    toJSON: {
-        virtuals: true
+    {
+        toJSON: {
+            virtuals: true
+        }
     }
-}));
+);
 
-User.virtual('friendCount').get(function () {
+const User = mongoose.model('User', userSchema);
+
+userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
 
