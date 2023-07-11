@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Thought = require('../../models/Thought');
 
-router.post('/thoughts/:thoughtId/reactions', async (req, res) => {
+router.post('/:thoughtId/reactions', async (req, res) => {
     try {
         const { thoughtId } = req.params;
         const { reactionBody, username } = req.body;
@@ -22,14 +22,14 @@ router.post('/thoughts/:thoughtId/reactions', async (req, res) => {
     }
 });
 
-router.delete('/thoughts/:thoughtId/reactions/:reactionId', async (req, res) => {
+router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
     try {
         const { thoughtId, reactionId } = req.params;
         const updatedThought = await Thought.findByIdAndUpdate(
             thoughtId,
             {
-                $pull: {
-                    reaction: { reactionId }
+                $pull: { 
+                    reactions: { reactionId: reactionId} 
                 }
             },
             { new: true }

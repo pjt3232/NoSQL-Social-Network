@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../../models/User');
 const Thought = require('../../models/Thought');
 
-router.get('/thoughts', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const thoughts = await Thought.find().populate('reactions');
         res.json(thoughts);
@@ -12,7 +12,7 @@ router.get('/thoughts', async (req, res) => {
     }
 });
 
-router.get('/thoughts/:thoughtId', async (req, res) => {
+router.get('/:thoughtId', async (req, res) => {
     try {
         const thought = await Thought.findById(req.params.thoughtId);
         if (!thought) {
@@ -25,9 +25,9 @@ router.get('/thoughts/:thoughtId', async (req, res) => {
     }
 });
 
-router.post('/thoughts', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const { thoughtText, username, userId } = req.body;
+        const { username, userId, thoughtText } = req.body;
         const thought = await Thought.create({
             thoughtText,
             username
@@ -39,14 +39,14 @@ router.post('/thoughts', async (req, res) => {
             },
             { new: true }
         );
-        res.json(data);
+        res.json(thought);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 });
 
-router.put('/thoughts/:thoughtId', async (req, res) => {
+router.put('/:thoughtId', async (req, res) => {
     try {
         const updatedThought = await Thought.findByIdAndUpdate(
             req.params.thoughtId,
@@ -63,7 +63,7 @@ router.put('/thoughts/:thoughtId', async (req, res) => {
     }
 });
 
-router.delete('/thoughts/thoughtId', async (req, res) => {
+router.delete('/:thoughtId', async (req, res) => {
     try {
         const deletedThought = await Thought.findByIdAndRemove(req.params.thoughtId);
         if (!deletedThought) {

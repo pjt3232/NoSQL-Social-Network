@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../../models/User');
 const Thought = require('../../models/Thought');
 
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const user = await User.find().populate('thoughts friends');
         if (!user) {
@@ -15,7 +15,7 @@ router.get('/users', async (req, res) => {
     }
 });
 
-router.get('/users/:userId', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     try {
         const user = await User.findById(req.params.userId).populate('thoughts friends');
         if (!user) {
@@ -28,7 +28,7 @@ router.get('/users/:userId', async (req, res) => {
     }
 });
 
-router.post('/users', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
         res.json(newUser);
@@ -38,7 +38,7 @@ router.post('/users', async (req, res) => {
     }
 });
 
-router.put('/users/:userId', async (req, res) => {
+router.put('/:userId', async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(
             req.params.userId,
@@ -55,7 +55,7 @@ router.put('/users/:userId', async (req, res) => {
     }
 });
 
-router.delete('/users/:userId', async (req, res) => {
+router.delete('/:userId', async (req, res) => {
     try {
         const deletedUser = await User.findByIdAndRemove(req.params.userId);
         if (!deletedUser) {
@@ -71,7 +71,7 @@ router.delete('/users/:userId', async (req, res) => {
     }
 });
 
-router.post('/users/:userId/friends/:friendId', async (req, res) => {
+router.post('/:userId/friends/:friendId', async (req, res) => {
     try {
         const { userId, friendId } = req.params;
         const user = await User.findByIdAndUpdate(
@@ -88,7 +88,7 @@ router.post('/users/:userId/friends/:friendId', async (req, res) => {
     }
 });
 
-router.delete('/users/:userId/friends/:friendId', async (req, res) => {
+router.delete('/:userId/friends/:friendId', async (req, res) => {
     try {
         const { userId, friendId } = req.params;
         const user = await User.findByIdAndUpdate(
