@@ -19,6 +19,8 @@ My motivation behind building this project was to test and improve my Full-Stack
 - Use a tool like [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/) to test the API endpoints.
 - The server will start at `localhost:3001` by default.
 
+[Watch this walkthrough video](https://drive.google.com/file/d/1NpvXVn7bcMkF0VJZVlX5-6kWFfL4PmN6/view) to get a visual guide on how to use the application and its features.
+
 ## Contributing
 Contributions to the NoSQL Social Network are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
