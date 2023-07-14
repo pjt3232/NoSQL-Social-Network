@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//creates a new mongoose schema for the User model
 const userSchema = new mongoose.Schema(
     {
         username: { 
@@ -12,6 +13,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             unique: true,
             required: true,
+            //regex used for matching and validating an email address
             match: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/
         },
         thoughts: [{
@@ -30,8 +32,10 @@ const userSchema = new mongoose.Schema(
     }
 );
 
+//creates mongoose model using the userSchema
 const User = mongoose.model('User', userSchema);
 
+//virtual method that returns how many friends each user has
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });

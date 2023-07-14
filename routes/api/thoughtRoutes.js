@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../../models/User');
 const Thought = require('../../models/Thought');
 
+//route for finding and populating all data for thoughts
 router.get('/', async (req, res) => {
     try {
         const thoughts = await Thought.find().populate('reactions');
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+//route for finding a single thought by its Id
 router.get('/:thoughtId', async (req, res) => {
     try {
         const thought = await Thought.findById(req.params.thoughtId);
@@ -25,6 +27,8 @@ router.get('/:thoughtId', async (req, res) => {
     }
 });
 
+//route for creating a new thought using the req.body 
+//updates the user by Id and pushes the new thought to the user's thought array
 router.post('/', async (req, res) => {
     try {
         const { username, userId, thoughtText } = req.body;
@@ -46,6 +50,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+//route for updating a thought by Id and then updating it with the new req.body
 router.put('/:thoughtId', async (req, res) => {
     try {
         const updatedThought = await Thought.findByIdAndUpdate(
@@ -63,6 +68,9 @@ router.put('/:thoughtId', async (req, res) => {
     }
 });
 
+//route for deleting a thought by its Id
+//finds by Id and then deletes the thought
+//updates many users by pulling all data associated with that thought
 router.delete('/:thoughtId', async (req, res) => {
     try {
         const deletedThought = await Thought.findByIdAndRemove(req.params.thoughtId);

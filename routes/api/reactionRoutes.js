@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Thought = require('../../models/Thought');
 
+//route for posting a thought reaction
+//finds by Id and updates the thought by pushing up new reaction json data
 router.post('/:thoughtId/reactions', async (req, res) => {
     try {
         const { thoughtId } = req.params;
@@ -22,6 +24,8 @@ router.post('/:thoughtId/reactions', async (req, res) => {
     }
 });
 
+//route for deleting a thought reaction
+//finds by Id and updates the thought by pulling the reaction json data
 router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
     try {
         const { thoughtId, reactionId } = req.params;
