@@ -1,5 +1,7 @@
 # NoSQL Social Network
 
+[![No-SQL-Social-Network-Screenshot.png](https://i.postimg.cc/HxkJ4m6D/No-SQL-Social-Network-Screenshot.png)](https://postimg.cc/mcK2Bvx8)
+
 ## Description
 My motivation behind building this project was to test and improve my Full-Stack development skills with a new software to be prepared for an application that requires NoSQL in my career. I learned how to use softwares such as MongoDB, NoSQL, Mongoose, and how to build models an excute commands in these softwares. The NoSQL Social Network is a backend application that provides RESTful API for a social networking platform. It allows users to manage their profiles, create thoughts, interact with friends, and engage in discussions through reactions. This application is built using Node.js, Express.js, and MongoDB with Mongoose.
 
